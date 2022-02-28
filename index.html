@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Chordle</title>
+	<link rel="stylesheet" href="vars.css">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="input.css">
+	<link rel="stylesheet" href="modal.css">
+	<script
+	src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/tone@14.7.77/build/Tone.js"></script>
+	<script src="cookie.js"></script>
+	<script src="main.js"></script>
+	
+</head>
+<body>
+	<header>
+		<div id="help">
+			<button class="headButton help"><img src="svg/help.svg" width="32" height="32"></button>
+		</div>
+		<div id="title"><h1>CHORDLE</h1></div>
+		<div id="record">
+			<button class="headButton record"><img src="svg/poll.svg" width="32" height="32"></button>
+		</div>
+	</header>
+	<div id="wrap">
+		<div id="display">
+			<div id="board">
+				<div class="row">
+					<div class="tile"></div>
+					<div class="tile"></div>
+					<div class="tile"></div>
+					<div class="tile"></div>
+				</div>
+				<div class="row">
+					<div class="tile"></div>
+					<div class="tile"></div>
+					<div class="tile"></div>
+					<div class="tile"></div>
+				</div>
+				<div class="row">
+					<div class="tile"></div>
+					<div class="tile"></div>
+					<div class="tile"></div>
+					<div class="tile"></div>
+				</div>
+			</div>
+		</div>
+		<div id="input">
+			<div class="inputRow">
+				<div class="space size-half"></div>
+				<button class="inputButton black-ken" data-note="C#">ド#</button>
+				<button class="inputButton black-ken" data-note="D#">レ#</button>
+				<div class="space"></div>
+				<button class="inputButton black-ken" data-note="F#">ファ#</button>
+				<button class="inputButton black-ken" data-note="G#">ソ#</button>
+				<button class="inputButton black-ken" data-note="A#">ラ#</button>
+				<div class="space size-half"></div>
+			</div>
+			<div class="inputRow">
+				<button class="inputButton white-ken" data-note="C">ド</button>
+				<button class="inputButton white-ken" data-note="D">レ</button>
+				<button class="inputButton white-ken" data-note="E">ミ</button>
+				<button class="inputButton white-ken" data-note="F">ファ</button>
+				<button class="inputButton white-ken" data-note="G">ソ</button>
+				<button class="inputButton white-ken" data-note="A">ラ</button>
+				<button class="inputButton white-ken" data-note="B">シ</button>
+			</div>
+			<div class="inputRow">
+				<button class="otherButton enterButton">Enter</button>
+				<button class="otherButton deleteButton">Delete ←</button>
+				<button class="otherButton playButton">Play ♪</button>
+			</div>
+		</div>
+		<div id="howto" style="display: none;">
+			<h2>HOW TO PLAY</h2>
+			<button type="button" class="close">ｘ</button>
+			<p>4回の試行で、今日の和音を予測します。Playボタンを押すと、音が再生されます。</p>
+			<p>音は、<strong>小さい順</strong>に入力してください。</p>
+			<h3>例</h3>
+			<p>ドとソはこの和音に含まれ、場所もあっています。</p>
+			<p>ラはこの和音に含まれますが、場所が違います。</p>
+			<p>ファはこの和音に含まれません。</p>
+			<div class="setsumeiTile correct">ド</div>
+			<div class="setsumeiTile present">ラ</div>
+			<div class="setsumeiTile correct">ソ</div>
+			<div class="setsumeiTile absent">ファ</div>
+			<p><strong>お題は毎日変わります。</strong></p>
+			<div id="attr">
+				<p>Chordle is created by <a href="https://twitter.com/capgame_" target="_blank" rel="noopener noreferrer">Cap(きゃっぷ)</a></p>
+				<p>"Tone.js" : Yotam Mann</p>
+				<p>Piano sound : 魔王魂</p>
+				<p>This site is inspired by <a href="https://www.nytimes.com/games/wordle/index.html" target="_blank" rel="noopener noreferrer">Wordle</a></p>
+			</div>
+		</div>
+		<div id="statistics" style="display: none;">
+			<h2>STATISTICS</h2>
+			<button type="button" class="close">ｘ</button>
+			<div id="statistics-data">
+				<div id="playcount">
+					<h3>プレイ数</h3>
+					<span class="dataNum"></span>
+					<span class="tanni">回</span>
+				</div>
+				<div id="win-rate">
+					<h3>勝率</h3>
+					<span class="dataNum"></span>
+					<span class="tanni">%</span>
+				</div>
+				<div id="now-streak">
+					<h3>現在の連勝記録</h3>
+					<span class="dataNum"></span>
+					<span class="tanni">連続</span>
+				</div>
+				<div id="max-streak">
+					<h3>最高連勝記録</h3>
+					<span class="dataNum"></span>
+					<span class="tanni">連続</span>
+				</div>
+			</div>
+			<h3>グラフ</h3>
+			<div id="statistics-graphs">
+				<div class="graphWrap firstHit">
+					<div class="graph-title">1</div>
+					<div class="graph"></div>
+					<div class="graph-space"></div>
+				</div>
+				<div class="graphWrap secondHit">
+					<div class="graph-title">2</div>
+					<div class="graph"></div>
+					<div class="graph-space"></div>
+				</div>
+				<div class="graphWrap thirdHit">
+					<div class="graph-title">3</div>
+					<div class="graph"></div>
+					<div class="graph-space"></div>
+				</div>
+				<div id="share">
+					<button id="shareButton">🐤Twitterでシェア</button>
+				</div>
+			</div>
+		</div>
+		<div id="first" class="showAnimation" style="display: none;">
+			<h2>ABOUT CHORDLE</h2>
+			<button type="button" class="close">ｘ</button>
+			<p>4回の試行で、今日の和音を予測します。Playボタンを押すと、音が再生されます。</p>
+			<p>音は、<strong>小さい順</strong>に入力してください。</p>
+			<h3>例</h3>
+			<p>ドとソはこの和音に含まれ、場所もあっています。</p>
+			<p>ラはこの和音に含まれますが、場所が違います。</p>
+			<p>ファはこの和音に含まれません。</p>
+			<div class="setsumeiTile correct">ド</div>
+			<div class="setsumeiTile present">ラ</div>
+			<div class="setsumeiTile correct">ソ</div>
+			<div class="setsumeiTile absent">ファ</div>
+			<p><strong>お題は毎日変わります。</strong></p>
+			<div id="attr">
+				<p>This site is inspired by <a href="https://www.nytimes.com/games/wordle/index.html" target="_blank" rel="noopener noreferrer">Wordle</a></p>
+			</div>
+		</div>
+		<div id="msg">
+		</div>
+	</div>
+</body>
+</html>

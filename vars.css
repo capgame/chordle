@@ -1,0 +1,8 @@
+:root{
+	--header-height: 45px;
+	--input-height: 240px;
+}
+
+#board{
+	--board-width: 360px;
+}

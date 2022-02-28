@@ -1,0 +1,54 @@
+#wrap #input{
+	height: var(--input-height);
+}
+
+.inputRow{
+	display: flex;
+}
+.space{
+	flex: 1;
+	margin: 0.5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.size-half{
+	flex: 0.5;
+}
+.inputButton{
+	flex: 1;
+	height: 98px;
+	text-align: center;
+	font: inherit;
+	font-size: 15px;
+	border: none;
+	border-radius: 3px;
+	margin: 1px;
+}
+.otherButton{
+	flex: 1;
+	height: 38px;
+	text-align: center;
+	font: inherit;
+	font-size: 15px;
+	border: none;
+	border-radius: 3px;
+	margin: 1px;
+	background-color: #dddddd;
+}
+.white-ken{
+	background-color: #eeeeee;
+	color: #353535;
+}
+.black-ken{
+	background-color: #353535;
+	color: #eeeeee;
+}
+.otherButton{
+	background-color: #999999;
+}
+
+.incorrect{
+	background-color: #999999;
+	color: #353535;
+}

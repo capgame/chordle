@@ -1,0 +1,152 @@
+#howto,#statistics,#first{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding: 10px;
+	background-color: #FFFFFF;
+	text-align: center;
+}
+#statistics,#first{
+	border: 1px solid #CCCCCC;
+	border-radius: 15px;
+	height: fit-content;
+	inset: 0;
+	margin: auto;
+	max-width: 600px;
+	width: 90%;
+}
+#howto h2,#statistics h2,#first h2{
+	border-bottom: 1px solid #CCCCCC;
+}
+#attr{
+	border-top: 1px solid #CCCCCC;
+}
+
+.close{
+	position: absolute;
+	background: none;
+	font-size: 1.5em;
+	top: 0;
+	right: 0.5em;
+	border: none;
+}
+
+.setsumeiTile{
+	width: 50px;
+	height: 50px;
+	border: 1px solid #8b8b8b;
+	margin: 2px 5px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 20px;
+	font-weight: bolder;
+}
+
+.showAnimation{
+	animation-name: modal-show;
+	animation-duration: 0.3s;
+	animation-fill-mode: forwards;
+	animation-timing-function: ease-out;
+	opacity: 0;
+}
+.hideAnimation{
+	animation-name: modal-hide;
+	animation-duration: 0.3s;
+	animation-fill-mode: forwards;
+	animation-timing-function: ease-out;
+	opacity: 1;
+}
+
+
+@keyframes modal-show{
+	0%{
+		opacity: 0;
+		top: 3000px;
+	}
+	1%{
+		opacity: 0;
+		top: 30px;
+	}
+	
+	100%{
+		opacity: 1;
+		top: 0;
+	}
+}
+@keyframes modal-hide{
+	0%{
+		opacity: 1;
+		top: 0;
+	}
+	
+	99%{
+		opacity: 0;
+		top: 30px;
+	}
+	100%{
+		opacity: 0;
+		top: 3000px;
+	}
+}
+
+
+#statistics-data{
+	display: flex;
+}
+#statistics-data div{
+	flex: 1;
+}
+#statistics-data div .dataNum{
+	font-size: 30px;
+}
+#statistics-data div .tanni{
+	font-size: 15px;
+}
+
+#statistics-graphs{
+	width: 100%;
+}
+
+.graphWrap{
+	display: flex;
+	align-items: center;
+	height: 30px;
+	margin: 3px;
+}
+
+.graph{
+	display: flex;
+	background-color: #DDD;
+	height: 30px;
+	min-width: 30px;
+	margin: 3px;
+	justify-content: right;
+	align-items: center;
+	font-size: 20px;
+	padding-right: 8px;
+}
+.graph-space{
+	background: none;
+	height: 30px;
+	margin: 3px;
+}
+
+.todayClear{
+	background-color: #6aaa64;
+	color: #FFFFFF;
+}
+
+#share{
+	display: none;
+}
+#shareButton{
+	border: none;
+	border-radius: 5px;
+	padding: 5px;
+	font: inherit;
+	background-color: #00acee;
+	color: #FFFFFF;
+}
