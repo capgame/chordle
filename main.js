@@ -6,7 +6,7 @@ let isEnd,isWin;
 let finished = false;
 
 const d = new Date();
-let todaysSeed = d.getFullYear() * 10000 + d.getMonth() * 100 + d.getDate() + 2;
+const todaysSeed = d.getFullYear() * 10000 + d.getMonth() * 100 + d.getDate() + 2;
 
 let distribution = [
 	0,0,0,
@@ -23,12 +23,12 @@ let statisticsData = {
 function resize(){
 	const boardHeight = $(window).height() - 240 - 45;
 	if(boardHeight < 252){
-		let boardWidth = (360/252) * boardHeight;
+		let boardWidth = (370/252) * boardHeight;
 		$('#board')[0].style.setProperty("--board-width", `${boardWidth}px`);
-		console.log($('#board')[0].style.getPropertyValue("--board-width"))
+		// console.log($('#board')[0].style.getPropertyValue("--board-width"))
 		// $(':root').style.setProperty("--board-width", `${boardWidth}px`);
 	}else{
-	 	$('#board')[0].style.setProperty("--board-width", `360px`);
+	 	$('#board')[0].style.setProperty("--board-width", `370px`);
 	}
 }
 
@@ -38,26 +38,30 @@ window.onload = function(){
 	changeStatistics()
 
 	if(!getCookie("again")){
-		$("#first").css("display","block");
-		$("#first").addClass("showAnimation");
+		$("#first").parents(".modalWrap").addClass("showAnimation");
 		setCookie("again",true);
 	}
 
-	$(".close").on("click",() => {
+	$(".close").on("click",function(){
 		$("#howto").removeClass("showAnimation");
 		$("#howto").addClass("hideAnimation");
-		$("#statistics").addClass("hideAnimation");
-		$("#first").addClass("hideAnimation");
+		$(this).parents(".modalWrap").removeClass("showAnimation");
+		$(this).parents(".modalWrap").addClass("hideAnimation");
+		// $("#statistics").parents(".modalWrap").addClass("hideAnimation");
+		// $("#first").parents(".modalWrap").addClass("hideAnimation");
+		// $(".modalWrap").addClass("hideAnimation");
 	})
 	$(".help").on("click",() => {
-		$("#howto").css("display","block");
-		$("#howto").removeClass("hideAnimation");
-		$("#howto").addClass("showAnimation");
+		$("#howto").parents(".modalWrap").removeClass("hideAnimation");
+		$("#howto").parents(".modalWrap").addClass("showAnimation");
 	})
 	$(".record").on("click",() => {
-		$("#statistics").css("display","block");
-		$("#statistics").removeClass("hideAnimation");
-		$("#statistics").addClass("showAnimation");
+		$("#statistics").parents(".modalWrap").removeClass("hideAnimation");
+		$("#statistics").parents(".modalWrap").addClass("showAnimation");
+	})
+	$(".modalWrap").on("click",function(){
+		$(this).removeClass("showAnimation");
+		$(this).addClass("hideAnimation");
 	})
 
 
@@ -85,12 +89,45 @@ window.onload = function(){
 		playChord(makeChord());
 	});
 
+	$(".tryPlay").on("click",function(){
+		const row = $(this).data("row");
+		if(row < guesses.length){
+			const m = [guesses[row][0][1],guesses[row][1][1],guesses[row][2][1],guesses[row][3][1]];
+			playChord(addOctave(m));
+		}else if(row == guesses.length){
+			if(inputing[0]){
+				const m = inputing;
+				playChord(addOctave(m));
+			}else{
+				msg("Not entered");
+			}
+		}else{
+			msg("Not entered");
+		}
+	})
+
+
 	$("#shareButton").on("click",function(){
 		share();
 	});
 };
 
-
+function addOctave(ar){
+	let returnAr = []
+	let nowOctave = 3;
+	const oto = ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"];
+	for(let i = 0;i < ar.length;i++){
+		if(nowOctave == 3 && !(["G","G#","A","A#","B"].includes(ar[i]))){
+			nowOctave++;
+		}else if(i != 0){//最初じゃなければ
+			if(oto.indexOf(ar[i]) <= oto.indexOf(ar[i - 1])){
+				nowOctave++;
+			}
+		}
+		returnAr.push(ar[i] + nowOctave);
+	}
+	return returnAr;
+}
 
 function msg(m){
 	$("#msg").html(m);
@@ -243,7 +280,7 @@ const synth = new Tone.Sampler({
 
 function playChord(ar){
 	ar.forEach(i => {
-		synth.triggerAttackRelease(i,"1n");
+		if(i) synth.triggerAttackRelease(i,"1n");
 	});
 }
 

@@ -36,18 +36,21 @@
 					<div class="tile"></div>
 					<div class="tile"></div>
 					<div class="tile"></div>
+					<button class="tryPlay" data-row="0">♪</button>
 				</div>
 				<div class="row">
 					<div class="tile"></div>
 					<div class="tile"></div>
 					<div class="tile"></div>
 					<div class="tile"></div>
+					<button class="tryPlay" data-row="1">♪</button>
 				</div>
 				<div class="row">
 					<div class="tile"></div>
 					<div class="tile"></div>
 					<div class="tile"></div>
 					<div class="tile"></div>
+					<button class="tryPlay" data-row="2">♪</button>
 				</div>
 			</div>
 		</div>
@@ -77,11 +80,18 @@
 				<button class="otherButton playButton">Play ♪</button>
 			</div>
 		</div>
-		<div id="howto" style="display: none;">
-			<h2>HOW TO PLAY</h2>
-			<button type="button" class="close">ｘ</button>
-			<p>4回の試行で、今日の和音を予測します。Playボタンを押すと、音が再生されます。</p>
-			<p>音は、<strong>低い順</strong>に入力してください。※オクターブをまたぐこともあります。</p>
+	</div>
+
+	<div class="modalWrap">
+		<div id="howto">
+			<div class="modalHeader">
+				<div></div>
+				<h2>HOW TO PLAY</h2>
+				<button type="button" class="close">ｘ</button>
+			</div>
+			<p>4回の試行で、今日の和音を予測します。<br class="sp-br">Playボタンを押すと、お題の音が再生されます。</p>
+			<p>入力欄に音を入力し、♪ボタンを押すと、<br class="sp-br">入力された音をテスト再生することができます。</p>
+			<p>音は、<strong>低い順</strong>に入力してください。<br class="sp-br">※オクターブをまたぐこともあります。</p>
 			<h3>例</h3>
 			<p>ドとソはこの和音に含まれ、場所もあっています。</p>
 			<p>ラはこの和音に含まれますが、場所が違います。</p>
@@ -98,9 +108,15 @@
 				<p>This site is inspired by <a href="https://www.nytimes.com/games/wordle/index.html" target="_blank" rel="noopener noreferrer">Wordle</a></p>
 			</div>
 		</div>
-		<div id="statistics" style="display: none;">
-			<h2>STATISTICS</h2>
-			<button type="button" class="close">ｘ</button>
+	</div>
+
+	<div class="modalWrap">
+		<div id="statistics">
+			<div class="modalHeader">
+				<div></div>
+				<h2>STATISTICS</h2>
+				<button type="button" class="close">ｘ</button>
+			</div>
 			<div id="statistics-data">
 				<div id="playcount">
 					<h3>プレイ数</h3>
@@ -145,11 +161,17 @@
 				</div>
 			</div>
 		</div>
-		<div id="first" class="showAnimation" style="display: none;">
-			<h2>ABOUT CHORDLE</h2>
-			<button type="button" class="close">ｘ</button>
-			<p>4回の試行で、今日の和音を予測します。Playボタンを押すと、音が再生されます。</p>
-			<p>音は、<strong>低い順</strong>に入力してください。※オクターブをまたぐこともあります。</p>
+	</div>
+	<div class="modalWrap">
+		<div id="first">
+			<div class="modalHeader">
+				<div></div>
+				<h2>ABOUT CHORDLE</h2>
+				<button type="button" class="close">ｘ</button>
+			</div>
+			<p>4回の試行で、今日の和音を予測します。<br class="sp-br">Playボタンを押すと、音が再生されます。</p>
+			<p>入力欄に音を入力し、♪ボタンを押すと、<br class="sp-br">入力された音をテスト再生することができます。</p>
+			<p>音は、<strong>低い順</strong>に入力してください。<br class="sp-br">※オクターブをまたぐこともあります。</p>
 			<h3>例</h3>
 			<p>ドとソはこの和音に含まれ、場所もあっています。</p>
 			<p>ラはこの和音に含まれますが、場所が違います。</p>
@@ -163,8 +185,8 @@
 				<p>This site is inspired by <a href="https://www.nytimes.com/games/wordle/index.html" target="_blank" rel="noopener noreferrer">Wordle</a></p>
 			</div>
 		</div>
-		<div id="msg">
-		</div>
+	</div>
+	<div id="msg">
 	</div>
 </body>
 </html>
