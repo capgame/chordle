@@ -43,13 +43,8 @@ window.onload = function(){
 	}
 
 	$(".close").on("click",function(){
-		$("#howto").removeClass("showAnimation");
-		$("#howto").addClass("hideAnimation");
 		$(this).parents(".modalWrap").removeClass("showAnimation");
 		$(this).parents(".modalWrap").addClass("hideAnimation");
-		// $("#statistics").parents(".modalWrap").addClass("hideAnimation");
-		// $("#first").parents(".modalWrap").addClass("hideAnimation");
-		// $(".modalWrap").addClass("hideAnimation");
 	})
 	$(".help").on("click",() => {
 		$("#howto").parents(".modalWrap").removeClass("hideAnimation");
