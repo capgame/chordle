@@ -256,9 +256,9 @@ function changeStatistics(){
 	$(".secondHit").find(".graph").text(statisticsData.count[1]);
 	$(".thirdHit").find(".graph").text(statisticsData.count[2]);
 
-	$(".firstHit" ).find(".graph").css("flex",statisticsData.count[0] || "0");
-	$(".secondHit").find(".graph").css("flex",statisticsData.count[1] || "0");
-	$(".thirdHit" ).find(".graph").css("flex",statisticsData.count[2] || "0");
+	$(".firstHit" ).find(".graph").css("flex",String(statisticsData.count[0]) || "0");
+	$(".secondHit").find(".graph").css("flex",String(statisticsData.count[1]) || "0");
+	$(".thirdHit" ).find(".graph").css("flex",String(statisticsData.count[2]) || "0");
 
 	let max = Math.max(statisticsData.count[0],statisticsData.count[1],statisticsData.count[2]);
 
