@@ -6,7 +6,7 @@ let isEnd,isWin;
 let finished = false;
 
 const d = new Date();
-const todaysSeed = d.getFullYear() * 10000 + d.getMonth() * 100 + d.getDate() + 2;
+const todaysSeed = d.getFullYear() * 10000 + d.getMonth() * 100 + d.getDate();
 
 let distribution = [
 	0,0,0,
@@ -262,9 +262,9 @@ function changeStatistics(){
 
 	let max = Math.max(statisticsData.count[0],statisticsData.count[1],statisticsData.count[2]);
 
-	$(".firstHit" ).find(".graph-space").css("flex",max - statisticsData.count[0] || "0");
-	$(".secondHit").find(".graph-space").css("flex",max - statisticsData.count[1] || "0");
-	$(".thirdHit" ).find(".graph-space").css("flex",max - statisticsData.count[2] || "0");
+	$(".firstHit" ).find(".graph-space").css("flex",String(max - statisticsData.count[0]) || "0");
+	$(".secondHit").find(".graph-space").css("flex",String(max - statisticsData.count[1]) || "0");
+	$(".thirdHit" ).find(".graph-space").css("flex",String(max - statisticsData.count[2]) || "0");
 }
 
 
