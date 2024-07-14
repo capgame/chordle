@@ -21,9 +21,13 @@ let statisticsData = {
 }
 
 function resize(){
-	const boardHeight = $(window).height() - 240 - 45;
-	if(boardHeight < 252){
-		let boardWidth = (370/252) * boardHeight;
+	const inputHeight = 240;
+	const headerHeight = 45;
+	const boardHeight = $(window).height() - inputHeight - headerHeight;
+	const rowHeight = 74;
+	const minBoardHeight = rowHeight * 3 + 30;	//margin 30px
+	if(boardHeight < minBoardHeight){
+		let boardWidth = (370 / minBoardHeight) * boardHeight;	//縦横比を固定する
 		$('#board')[0].style.setProperty("--board-width", `${boardWidth}px`);
 		// console.log($('#board')[0].style.getPropertyValue("--board-width"))
 		// $(':root').style.setProperty("--board-width", `${boardWidth}px`);
@@ -147,9 +151,9 @@ function share(){
 			if(i[0] == 2)
 				shareText += "🟩";
 		}
-		shareText += "\n";
+		shareText += "\n\n";
 	}
-
+	shareText += "https://capgame.github.io/chordle/";
 	let encodeText = encodeURI(shareText);
 	location.href = "https://twitter.com/intent/tweet?text=" + encodeText;
 }

@@ -58,7 +58,7 @@
 	animation-duration: 0.3s;
 	animation-fill-mode: forwards;
 	animation-timing-function: ease-out;
-	opacity: 0;
+	/* opacity: 0; */
 }
 .hideAnimation{
 	animation-name: modal-hide;
